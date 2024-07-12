@@ -1,9 +1,13 @@
 import os
 import pandas as pd
 from datasets import Dataset, DatasetDict, Features, Value, Image
+from huggingface_hub import HfApi, login
 
 #Define the path to your images
-data_dir = "data"
+current_dir = os.path.dirname(__file__)
+data_dir = os.path.join(current_dir, '..', 'data')
+
+token = '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'
 
 #Define the paths to your train and test CSV files
 train_csv_file = os.path.join(data_dir, "summary_train_data.csv")
@@ -27,10 +31,11 @@ def create_dataset(csv_file, split_name):
     #Reset the indx to avoid '__index_level_0' column
     df = df.reset_index(drop=True)
     #Define the features of the dataset
+    print(df.columns)
     features = Features({
         'image': Image(),
         'title': Value('string'),
-        'videoSubscriberRatio': Value('float32')
+        'viewsSubscriberRatio': Value('float32')
     })
 
 
@@ -47,6 +52,9 @@ dataset_dict = DatasetDict({
     'train': train_dataset,
     'test': test_dataset
 })
+
+api = HfApi()
+login(token)
 
 #Push to Hugginface (you need to be loggedin)
 dataset_dict.push_to_hub("nicoleocla/thumbnail_pro")
