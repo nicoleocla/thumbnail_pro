@@ -12,7 +12,8 @@ token = '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'
 #Define the paths to your train and test CSV files
 train_csv_file = os.path.join(data_dir, "train_rounded_data.csv")
 test_csv_file = os.path.join(data_dir, "test_rounded_data.csv")
-hundred_test_file = os.path.join(data_dir, "hundred__rounded_data.csv")
+hundred_test_file = os.path.join(data_dir, "hundred_rounded_data.csv")
+thirty_test_file = os.path.join(data_dir, "thirty_rounded_data.csv")
 
 #Function to load images
 def load_image(image_path):
@@ -48,12 +49,14 @@ def create_dataset(csv_file, split_name):
 train_dataset = create_dataset(train_csv_file, "train")
 test_dataset = create_dataset(test_csv_file, "test")
 hundred_test_file = create_dataset(hundred_test_file, "hundred")
+thirty_test_file = create_dataset(hundred_test_file, "thirty")
 
 #Combine into a DatasetDict
 dataset_dict = DatasetDict({
     'train': train_dataset,
     'test': test_dataset,
-    'hundred' : hundred_test_file
+    'hundred' : hundred_test_file,
+    'thirty' : thirty_test_file
 })
 
 api = HfApi()
