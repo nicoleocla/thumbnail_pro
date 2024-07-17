@@ -10,9 +10,9 @@ data_dir = os.path.join(current_dir, '..', 'data')
 token = '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'
 
 #Define the paths to your train and test CSV files
-train_csv_file = os.path.join(data_dir, "rounded_train_data.csv")
-test_csv_file = os.path.join(data_dir, "rounded_test_data.csv")
-hundred_test_file = os.path.join(data_dir, "hundred_data.csv")
+train_csv_file = os.path.join(data_dir, "train_rounded_data.csv")
+test_csv_file = os.path.join(data_dir, "test_rounded_data.csv")
+hundred_test_file = os.path.join(data_dir, "hundred__rounded_data.csv")
 
 #Function to load images
 def load_image(image_path):
@@ -47,7 +47,7 @@ def create_dataset(csv_file, split_name):
 #Create train and test datasets
 train_dataset = create_dataset(train_csv_file, "train")
 test_dataset = create_dataset(test_csv_file, "test")
-hundred_test_file = create_dataset(test_csv_file, "hundred")
+hundred_test_file = create_dataset(hundred_test_file, "hundred")
 
 #Combine into a DatasetDict
 dataset_dict = DatasetDict({
