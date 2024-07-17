@@ -49,7 +49,7 @@ def create_dataset(csv_file, split_name):
 train_dataset = create_dataset(train_csv_file, "train")
 test_dataset = create_dataset(test_csv_file, "test")
 hundred_test_file = create_dataset(hundred_test_file, "hundred")
-thirty_test_file = create_dataset(hundred_test_file, "thirty")
+thirty_test_file = create_dataset(thirty_test_file, "thirty")
 
 #Combine into a DatasetDict
 dataset_dict = DatasetDict({
