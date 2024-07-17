@@ -7,11 +7,12 @@ from huggingface_hub import HfApi, login
 current_dir = os.path.dirname(__file__)
 data_dir = os.path.join(current_dir, '..', 'data')
 
-token = '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'
+token = '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'
 
 #Define the paths to your train and test CSV files
-train_csv_file = os.path.join(data_dir, "summary_train_data.csv")
-test_csv_file = os.path.join(data_dir, "summary_test_data.csv")
+train_csv_file = os.path.join(data_dir, "rounded_train_data.csv")
+test_csv_file = os.path.join(data_dir, "rounded_test_data.csv")
+hundred_test_file = os.path.join(data_dir, "hundred_data.csv")
 
 #Function to load images
 def load_image(image_path):
@@ -46,15 +47,17 @@ def create_dataset(csv_file, split_name):
 #Create train and test datasets
 train_dataset = create_dataset(train_csv_file, "train")
 test_dataset = create_dataset(test_csv_file, "test")
+hundred_test_file = create_dataset(test_csv_file, "hundred")
 
 #Combine into a DatasetDict
 dataset_dict = DatasetDict({
     'train': train_dataset,
-    'test': test_dataset
+    'test': test_dataset,
+    'hundred' : hundred_test_file
 })
 
 api = HfApi()
 login(token)
 
 #Push to Hugginface (you need to be loggedin)
-dataset_dict.push_to_hub("nicoleocla/thumbnail_pro")
+dataset_dict.push_to_hub("martin8a/thumbnail-pro")
