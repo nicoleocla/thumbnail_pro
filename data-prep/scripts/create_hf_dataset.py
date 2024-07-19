@@ -12,8 +12,8 @@ token = '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'
 #Define the paths to your train and test CSV files
 train_csv_file = os.path.join(data_dir, "train_percentage_data.csv")
 test_csv_file = os.path.join(data_dir, "test_percentage_data.csv")
-hundredfifty_test_file = os.path.join(data_dir, "hundred_percentage_data.csv")
-forty_test_file = os.path.join(data_dir, "forty_percentage_data.csv")
+hundredfifty_test_file = os.path.join(data_dir, "hundred_label_data.csv")
+forty_test_file = os.path.join(data_dir, "forty_label_data.csv")
 
 #Function to load images
 def load_image(image_path):
